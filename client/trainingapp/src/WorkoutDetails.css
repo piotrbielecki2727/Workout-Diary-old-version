@@ -1,0 +1,75 @@
+.workout-details-container {
+    top:50px;
+    padding: 60px;
+    margin: auto;
+    width: 100%;
+    max-width: 520px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background-color: white;
+    position: relative;
+}
+
+
+.table {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    max-width: 400px;
+  }
+  
+  .table td, 
+  .table th {
+    padding: 0.25rem;
+    text-align: center;
+    
+  }
+  
+  .table thead th {
+    background-color: #3b3b3b;
+    color: white;
+    border-color: #333;
+    border-width: 0.1px;
+
+  }
+  
+  .table tbody td {
+    border-color: #dee2e6;
+  }
+  
+
+  h5 {
+    text-align: center;
+  }
+
+  .workout-details-container .btn-info1 {
+    background-color:rgb(60, 152, 30);
+    border-color: #333;
+    border: 1px;
+    color: #fff;
+  }
+
+  .workout-details-container .btn-info1:hover{
+    background-color: #38ba38;
+    color: #fff;
+
+  }
+
+  .workout-details-container .btn-info {
+    background-color: #3b3b3b;
+    border-color: #333;
+    border: 1px;
+    color: #fff;
+  }
+  
+  .workout-details-container .btn-info:hover {
+    background-color: #646161;
+    color: #fff;
+  
+  }

@@ -1,0 +1,167 @@
+body {
+  overflow-y: scroll;
+  }
+
+  .xd {
+    top:50px;
+    padding: 60px;
+    margin: auto;
+    width: 100%;
+    max-width: 1090px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background-color: white;
+    position: relative;
+  }
+
+
+.xd .wariat {
+  background-color: rgb(60, 152, 30);
+  color: white;
+  border: 2px;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+.xd .wariat:hover {
+  background-color: #38ba38;
+}
+
+.xd .deletebutton {
+  background-color: rgb(100, 16, 16);
+  color: white;
+  border: 2px;
+  border-radius: 5px;
+
+}
+
+.xd .deletebutton:hover {
+  background-color: #bb2828;
+}
+
+.xd .editbutton {
+  background-color: rgb(60, 78, 156);
+  color: white;
+  border: 2px;
+  border-radius: 5px;
+
+}
+
+.xd .editbutton:hover {
+  background-color: #4e82a4;
+}
+
+
+.xd .update {
+  background-color: rgb(60, 152, 30);
+  color: white;
+  border: 2px;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.xd .update:hover{
+  background-color: #38ba38;
+}
+
+.xd .btn-info {
+  background-color: #333;
+  border-color: #333;
+  border: 1px;
+  color: #fff;
+}
+
+.xd .btn-info:hover {
+  background-color: #646161;
+
+}
+
+
+input[type="text"],
+input[type="datetime-local"] {
+  width: 410px;
+}
+
+.list-group {
+  margin: 30px auto;
+  max-width: 1000px;
+
+}
+
+.list-group-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  color: #212529;
+  border: none;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item:hover {
+  background-color: #e9ecef;
+}
+
+.list-group-item h4 {
+  margin: 5;
+}
+
+.list-group-item p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.btn-group {
+  margin-left: 5px;
+}
+
+.btn {
+  margin-right: 3px;
+}
+
+.list-group-item .btn {
+  margin-right: 3px;
+  font-size: 0.8rem;
+}
+
+.tables {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  border-collapse: collapse;
+  table-layout: fixed; /* użyj tej właściwości, aby wymusić równą szerokość kolumn */
+}
+
+.tables th,
+.tables td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.tables th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  width: 25%; /* ustawienie kolumny na 25% szerokości tabeli */
+}
+
+.tables tbody tr:nth-of-type(even) {
+  background-color: #f8f9fa;
+}
+
+
+
+.tables td {
+  word-wrap: break-word;
+  word-break: break-word;
+}
