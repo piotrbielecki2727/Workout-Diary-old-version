@@ -54,10 +54,10 @@ function WorkoutDetails() {
         </tbody>
       </Table>
       {workout.exercises &&
-        workout.exercises.map((exercise) => (
+        workout.exercises.map((exercise,index) => (
           <div key={exercise.exercise._id}>
-            <h5>{exercise.exercise.name}</h5>
-            <Table  bordered>
+            <h5>Exercise {index+1}: {exercise.exercise.name}</h5>
+            <Table bordered>
               <thead>
                 <tr>
                   <th>Set</th>

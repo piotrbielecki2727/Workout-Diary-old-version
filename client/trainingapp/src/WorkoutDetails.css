@@ -1,20 +1,16 @@
 .workout-details-container {
-    top:50px;
-    padding: 60px;
-    margin: auto;
-    width: 100%;
-    max-width: 520px;
-    min-height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-    padding-top: 0px;
-    padding-bottom: 20px;
-    border-radius: 8px;
-    background-color: white;
-    position: relative;
+  top:50px;
+  margin: auto;
+  width: 100%;
+  max-width: 520px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
 }
 
 

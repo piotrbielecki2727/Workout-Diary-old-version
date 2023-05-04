@@ -1,4 +1,70 @@
-img {
-  width: 300px;
-  height: 200px;
-}
+.modal-content {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+
+  }
+  
+  .modal-header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    }
+
+  .add-set {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  text-align: center;
+  }
+  
+  .add-set input {
+  margin-right: 10px;
+  }
+  
+  .sets-form {
+    display:flex;
+    flex-direction: column;
+  }
+  
+  .sets-form input {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+  }
+  
+  .sets-form .my-button {
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .sets-form .my-button:hover {
+    background-color: #5d5b5b;
+  }
+
+  .sets-form .my-button1 {
+    background-color: #1d972f;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .sets-form .my-button1:hover {
+    background-color: #27bb3d;
+  }
+  
+  
