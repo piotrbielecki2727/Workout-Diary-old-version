@@ -2,11 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, Route } from 'react-router-dom';
 import Axios from 'axios';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 import './WorkoutDetails.css';
+import WorkoutCreator from './WorkoutCreator';
+
 
 function WorkoutDetails() {
-  const { id } = useParams(); // użyj hooka useParams()
+  const { id } = useParams();
   const [workout, setWorkout] = useState(null);
+
+  const updateExerciseList = (newExerciseList) => {
+    setWorkout(prevState => ({
+      ...prevState,
+      exercises: newExerciseList
+    }));
+  }
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/getWorkoutById/${id}`)
@@ -19,20 +29,25 @@ function WorkoutDetails() {
       });
   }, [id]);
 
-  const deleteExercise = (exerciseId) => {
-    Axios.delete(`http://localhost:3001/deleteExercise/${id}/${exerciseId}`)
+
+  const deleteExerciseFromWorkout = (id, exerciseId) => {
+    Axios.delete(`http://localhost:3001/workouts/${id}/exercises/${exerciseId}`)
       .then((response) => {
-        console.log(response);
-        setWorkout(response.data);
+        console.log('Exercise deleted:', response.data);
+        // wywołaj funkcję, która zaktualizuje stan ćwiczeń w komponencie rodzica
       })
       .catch((error) => {
-        console.log(error);
+        console.log('Error deleting exercise:', error);
       });
   };
+
 
   if (!workout) {
     return <div>Loading...</div>;
   }
+
+
+
 
   return (
     <div className="workout-details-container">
@@ -54,9 +69,9 @@ function WorkoutDetails() {
         </tbody>
       </Table>
       {workout.exercises &&
-        workout.exercises.map((exercise,index) => (
+        workout.exercises.map((exercise, index) => (
           <div key={exercise.exercise._id}>
-            <h5>Exercise {index+1}: {exercise.exercise.name}</h5>
+            <h5>Exercise {index + 1}: {exercise.exercise.name}</h5>
             <Table bordered>
               <thead>
                 <tr>
@@ -74,12 +89,9 @@ function WorkoutDetails() {
                       <td>{index + 1}</td>
                       <td>{set.reps}</td>
                       <td>{set.weight}</td>
-                      <td>{(set.weight * (1+(0.0334*set.reps))).toFixed(1)}</td>
+                      <td>{(set.weight * (1 + (0.0334 * set.reps))).toFixed(1)}</td>
                       <td>
-                        <button
-                        >
-                          Delete set
-                        </button>
+                      <Button className='deletebutton' onClick={() => deleteExerciseFromWorkout(id,exercise.exercise._id)}>Delete</Button>
                       </td>
                     </tr>
                   ))}
@@ -88,15 +100,8 @@ function WorkoutDetails() {
           </div>
         ))}
       <p>
-        <Link
-          className="btn btn-info1"
-          to={`/workout-creator/${id}`}
-        >
-          Add exercises
-        </Link>
-        <Link className="btn btn-info" to={`/app`}>
-          Back
-        </Link>
+      <div>
+        <WorkoutCreator workout={workout} id={id} updateExerciseList={updateExerciseList}/></div>
       </p>
     </div>
   );

@@ -2,23 +2,34 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import { useParams, Link, Route } from 'react-router-dom';
 import './WorkoutCreator.css'
 
-function WorkoutCreator({ match, history }) {
-  const { id } = match.params;
+
+function WorkoutCreator(props) {
   const [exercises, setExercises] = useState([]);
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [sets, setSets] = useState([]);
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(props.show);
 
-  const handleClose = () => {
-    setShow(false);
-    setSets([]);
-    setSelectedExercise(null);
+  
+  useEffect(() => {
+    setShowModal(props.show);
+
+  }, [props.show]);
+
+
+  const handleshowAddExercise = (workout) => {
+    setShowModal(true);
+    setshowAddExercise(true);
   }
 
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShowModal(false);
+    setSets([]);
+    setSelectedExercise(null);
+    console.log('showModal:', showModal);
+  }
 
   useEffect(() => {
     Axios.get('http://localhost:3001/getExercises')
@@ -40,7 +51,7 @@ function WorkoutCreator({ match, history }) {
   };
 
   const handleAddExercise = () => {
-   
+    console.log('showModal:', showModal);
 
     const emptySetIndex = sets.findIndex((set) => set.reps === '' || set.weight === '');
     if (emptySetIndex !== -1) {
@@ -53,11 +64,12 @@ function WorkoutCreator({ match, history }) {
       return;
     }
 
-    Axios.put(`http://localhost:3001/addExerciseToWorkout/${id}`, {
+    Axios.put(`http://localhost:3001/addExerciseToWorkout/${props.id}`, {
       exercise: selectedExercise,
       sets: sets,
     })
       .then((response) => {
+        props.updateExerciseList(response.data.exercises);
         alert("EXERCISE ADDED");
         setSets([]);
         setSelectedExercise(null);
@@ -117,16 +129,19 @@ function WorkoutCreator({ match, history }) {
       <Button className="my-button1" onClick={handleAddExercise}>Add Exercise</Button>
     </div>
   );
+  const [showAddExercise, setshowAddExercise] = useState('');
+  const [selectedWorkout, setselectedWorkout] = useState({});
+
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+      <Button variant="success" onClick={() => handleshowAddExercise(props.workout)}>
+        Add Exercise
       </Button>
-      <button name="backbutton" onClick={() => { window.location.href = `/workout/${id}`; }} > Back</button>
-
-      <Modal show={show} onHide={handleClose} >
-
+      <Link className="btn btn-info" to={`/app`}>
+          Back
+        </Link>
+      <Modal show={showModal} onHide={handleClose} >
         <Modal.Header closeButton>
         </Modal.Header>
         <Modal.Body>

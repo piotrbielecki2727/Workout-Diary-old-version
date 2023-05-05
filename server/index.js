@@ -309,29 +309,21 @@ app.put('/addExerciseToWorkout/:id', async (req, res) => {
 
 
 
-app.delete('/deleteExercise/:workoutId/:exerciseId', async (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
+app.patch('/workouts/:workoutId/exercises/:exerciseId', async (req, res) => {
+  const { exerciseId,trainingId } = req.params;
   try {
-    const { workoutId, exerciseId } = req.params;
-    const workout = await Training.findById(workoutId);
-    if (!workout) {
-      return res.status(404).send({ message: 'Workout not found' });
-    }
-
-    const exerciseIndex = workout.exercises.findIndex(exercise => exercise._id.toString() === exerciseId.toString());
-    if (exerciseIndex === -1) {
-      return res.status(404).send({ message: 'Exercise not found' });
-    }
-
-    workout.exercises.splice(exerciseIndex, 1);
-    await workout.save();
-    return res.status(200).send({ message: 'Exercise deleted successfully' });
-
+    const result = await Training.findByIdAndUpdate(trainingId, {
+      $pull: { exercises: exerciseId }
+    });
   } catch (error) {
     console.error(error);
-    return res.status(500).send({ message: 'Internal server error' });
+    res.status(500).send("An error occurred while deleting the training.");
   }
 });
+
+
+
+
 
 app.get('/getUsers', async (req, res) => {
   try {
@@ -383,6 +375,8 @@ app.post('/unblockUser', async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 });
+
+
 
 
 
