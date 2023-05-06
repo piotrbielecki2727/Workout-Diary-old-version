@@ -1,8 +1,8 @@
 .workout-details-container {
-  top:50px;
+  top:30px;
   margin: auto;
   width: 100%;
-  max-width: 520px;
+  max-width: 800px;
   min-height: 600px;
   display: flex;
   flex-direction: column;
@@ -11,61 +11,114 @@
   border-radius: 8px;
   background-color: white;
   position: relative;
+  bottom: 50px;
 }
 
 
-.table {
-    margin-top: 20px;
-    font-size: 0.8rem;
-    max-width: 400px;
-  }
-  
-  .table td, 
-  .table th {
-    padding: 0.25rem;
-    text-align: center;
-    
-  }
-  
-  .table thead th {
-    background-color: #3b3b3b;
-    color: white;
-    border-color: #333;
-    border-width: 0.1px;
 
-  }
+.table1 {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  max-width: 600px;
+}
+
+.table1 td, 
+.table1 th {
+  padding: 0.25rem;
+  text-align: center;
   
-  .table tbody td {
-    border-color: #dee2e6;
-  }
+}
+
+.table1 thead th {
+  background-color: #3b3b3b;
+  color: white;
+  border-color: #333;
+  border-width: 0.1px;
+
+}
+
+.table1 tbody td {
+  border-color: #dee2e6;
+}
+
+.table2 {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  max-width: 750px;
+}
+
+.table2 thead th {
+  background-color: #3b3b3b;
+  color: white;
+  border-color: #333;
+  border-width: 0.1px;
+
+}
+
+.exercise-image-cell {
+  width: 15%;
+}
+
+.exercise-image-cell img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
   
-
-  h5 {
-    text-align: center;
-  }
-
-  .workout-details-container .btn-info1 {
-    background-color:rgb(60, 152, 30);
-    border-color: #333;
-    border: 1px;
-    color: #fff;
-  }
-
-  .workout-details-container .btn-info1:hover{
-    background-color: #38ba38;
-    color: #fff;
-
-  }
-
-  .workout-details-container .btn-info {
-    background-color: #3b3b3b;
-    border-color: #333;
-    border: 1px;
-    color: #fff;
-  }
   
-  .workout-details-container .btn-info:hover {
-    background-color: #646161;
-    color: #fff;
-  
-  }
+}
+
+.exercise-image-cell1 {
+  width: 100%;
+  border: #333;
+}
+
+.exercise-image-cell1 img {
+  max-width: 50%;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+
+
+
+.modal-content {
+  background-color: #fff;
+}
+
+.h5-1 {
+  text-align: center;
+  justify-content: center;
+ 
+  color: #000000;
+  font-size: 25px;
+
+}
+
+.table3 thead th {
+  background-color: #3b3b3b;
+  color: white;
+  border-color: #333;
+  border-width: 0.1px;
+
+}
+
+.table3 th, .table3 td {
+  color: black;
+}
+
+.deletebutton {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.editbutton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+

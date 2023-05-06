@@ -32,8 +32,8 @@ function NavigationBar(props) {
           ) : (
             <>
               <Nav.Link href='/app'>Your workouts</Nav.Link>
-              <Nav.Link href='exercises'>Exercises list</Nav.Link>
-              <Nav.Link href='userDetails'>User data</Nav.Link>
+              <Nav.Link href='/exercises'>Exercises list</Nav.Link>
+              <Nav.Link href='/userDetails'>User data</Nav.Link>
               {props.isLoggedIn === 'true' ? (
                 <Nav.Link className='logout' onClick={logOut}>
                   Logout

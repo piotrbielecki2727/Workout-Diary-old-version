@@ -10,6 +10,7 @@ import UserDetails from './UserDetails';
 import Home from './Home';
 import NavigationBar from './Navbar';
 import Admin from './Admin';
+import Exercises from './Exercises'
 
 const logOut = () => {
   window.localStorage.clear();
@@ -34,7 +35,8 @@ ReactDOM.render(
         <Route exact path="/app">
           <App />
         </Route>
-        <Route path="/exerciseslist">
+        <Route path="/exercises">
+        <Exercises />
         </Route>
         <Route path="/userDetails">
           <UserDetails />

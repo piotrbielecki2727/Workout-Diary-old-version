@@ -3,10 +3,10 @@ import Axios from 'axios';
 import moment from "moment";
 import "moment/locale/pl";
 import './App.css';
-import { Link, Route } from "react-router-dom";
-import { Form, Button, ListGroup } from 'react-bootstrap';
-import { Container, Row, Col, ButtonGroup } from 'react-bootstrap';
-import { Card, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import { Link } from "react-router-dom";
+import { Form, Button } from 'react-bootstrap';
+import { ButtonGroup } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
       .then((response) => {
         console.log('Training data:', response.data);
         setlistofTraining(response.data);
-        localStorage.setItem('userId', userId); // store the userId in the local storage
+        localStorage.setItem('userId', userId);
       })
       .catch((error) => {
         console.log(error);
@@ -69,16 +69,16 @@ function App() {
     try {
       const formattedDate = moment(date).format("YYYY-MM-DD HH:mm:ss");
       const response = await Axios.put(`http://localhost:3001/updateTraining/${trainingId}`, {
-      name: updatedTraining.name,
-      date: formattedDate,
-    });
+        name: updatedTraining.name,
+        date: formattedDate,
+      });
       const updatedTrainingObject = {
         _id: response.data._id,
         name: response.data.name,
         date: response.data.date,
       };
 
-   
+
       const userResponse = await Axios.get(`http://localhost:3001/user/${userId}`);
       const updatedTrainings = userResponse.data.trainings.map(training => {
         if (training._id === updatedTrainingObject._id) {
@@ -131,10 +131,6 @@ function App() {
     }
   };
 
-
-
-
-
   const cancelEdit = () => {
     setEditId(null);
     setName("");
@@ -171,33 +167,34 @@ function App() {
 
   return (
     <div className='xd'>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter name"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              pattern="[A-Za-z0-9\s]+"
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="formDate">
-            <Form.Label>Date</Form.Label>
-            <Form.Control
-              type="datetime-local"
-              placeholder="Enter date"
-              value={date}
-              onChange={(event) => setDate(event.target.value)}
-              min="2021-01-01T00:00"
-              max="2023-12-31T23:59"
-              required
-            />
-          </Form.Group>
-          <br></br>
-          {editId ? (
-            <>
+      <br></br>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            pattern="[A-Za-z0-9\s]+"
+            required
+          />
+        </Form.Group>
+        <Form.Group controlId="formDate">
+          <Form.Label>Date</Form.Label>
+          <Form.Control
+            type="datetime-local"
+            placeholder="Enter date"
+            value={date}
+            onChange={(event) => setDate(event.target.value)}
+            min="2021-01-01T00:00"
+            max="2023-12-31T23:59"
+            required
+          />
+        </Form.Group>
+        <br></br>
+        {editId ? (
+          <>
             <ButtonGroup>
               <Button className='update' variant="primary" type="submit" >
                 Update Training
@@ -205,51 +202,50 @@ function App() {
               <Button variant="secondary" onClick={cancelEdit}>
                 Cancel
               </Button>
-              </ButtonGroup>
-            </>
-          ) : (
-            <Button className='wariat' variant="secondary" type="submit">
-              Create Training
-            </Button>
-          )}
-        </Form>
-        <hr />
-        <p>User ID: {userId}</p>
-        <ListGroup>
+            </ButtonGroup>
+          </>
+        ) : (
+          <div className='wariatback'>
+          <Button className='wariat' type="submit">
+            Create Training
+          </Button>
+          </div>
+        )}
+      </Form>
+      <hr />
+      <p>User ID: {userId}</p>
+      <Table className='table2'>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
           {listofTraining.map((training) => {
-            console.log("List of training IDs:", listofTraining.map((training) => training._id));
-            console.log('Key for this item:', training._id);
             return (
-              <ListGroup.Item key={training._id}>
-                <table className='tables'>
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Date</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{training._id}</td>
-                      <td>{training.name}</td>
-                      <td>{training.date}</td>
-                      <td>
-                        <ButtonGroup>
-                          <Button className='editbutton' onClick={() => editTraining(training)}>Edit</Button>
-                          <Button className='deletebutton' onClick={() => deleteTraining(training._id)}>Delete</Button>
-                          <Link to={`/workout/${training._id}`} className='btn btn-info'>View</Link>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </ListGroup.Item>
-            );
+              <tr key={training._id}>
+                  <td>{training._id}</td>
+                  <td>{training.name}</td>
+                  <td>{training.date}</td>
+                  <td>
+                    <ButtonGroup>
+                      <Button className='editbutton' onClick={() => editTraining(training)}>Edit</Button>
+                      <Button className='deletebutton' onClick={() => deleteTraining(training._id)}>Delete</Button>
+                      <Link to={`/workout/${training._id}`} className='btn btn-info'>View</Link>
+                    </ButtonGroup>
+                  </td>
+              </tr>
+            )
           })}
-        </ListGroup>
-    </div>
+        </tbody>
+      </Table>
+
+
+
+    </div >
   );
 }
 

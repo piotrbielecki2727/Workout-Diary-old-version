@@ -22,6 +22,10 @@ body {
   }
 
 
+.wariatback {
+  text-align: center;
+}
+
 .xd .wariat {
   background-color: rgb(60, 152, 30);
   color: white;
@@ -88,37 +92,6 @@ input[type="datetime-local"] {
   width: 410px;
 }
 
-.list-group {
-  margin: 30px auto;
-  max-width: 1000px;
-
-}
-
-.list-group-item {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #f8f9fa;
-  color: #212529;
-  border: none;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.list-group-item:hover {
-  background-color: #e9ecef;
-}
-
-.list-group-item h4 {
-  margin: 5;
-}
-
-.list-group-item p {
-  margin: 0;
-  font-size: 14px;
-}
 
 .btn-group {
   margin-left: 5px;
@@ -127,38 +100,6 @@ input[type="datetime-local"] {
 .btn {
   margin-right: 3px;
 }
-
-.list-group-item .btn {
-  margin-right: 3px;
-  font-size: 0.8rem;
-}
-
-.tables {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 1rem;
-  background-color: #fff;
-  border-collapse: collapse;
-  table-layout: fixed; /* użyj tej właściwości, aby wymusić równą szerokość kolumn */
-}
-
-.tables th,
-.tables td {
-  padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
-}
-
-.tables th {
-  vertical-align: bottom;
-  border-bottom: 2px solid #dee2e6;
-  width: 25%; /* ustawienie kolumny na 25% szerokości tabeli */
-}
-
-.tables tbody tr:nth-of-type(even) {
-  background-color: #f8f9fa;
-}
-
 
 
 .tables td {

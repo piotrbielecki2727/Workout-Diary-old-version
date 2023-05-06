@@ -3,6 +3,7 @@ import Axios from 'axios';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { useParams, Link, Route } from 'react-router-dom';
+import Image from 'react-bootstrap/Image';
 import './WorkoutCreator.css'
 
 
@@ -11,8 +12,8 @@ function WorkoutCreator(props) {
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [sets, setSets] = useState([]);
   const [showModal, setShowModal] = useState(props.show);
+  const [selectedMuscle, setSelectedMuscle] = useState(null);
 
-  
   useEffect(() => {
     setShowModal(props.show);
 
@@ -31,23 +32,51 @@ function WorkoutCreator(props) {
     console.log('showModal:', showModal);
   }
 
+  // useEffect(() => {
+  //   Axios.get('http://localhost:3001/getExercises')
+  //     .then((response) => {
+  //       setExercises(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
+
+
   useEffect(() => {
-    Axios.get('http://localhost:3001/getExercises')
-      .then((response) => {
+    const fetchData = async () => {
+      const options = {
+        method: 'GET',
+        url: 'https://exercisedb.p.rapidapi.com/exercises',
+        headers: {
+          'X-RapidAPI-Key': '25fac427ebmshfd3bfe4f86e1cdcp16c50djsn9cb25b01059a',
+          'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+        }
+      };
+
+      try {
+        const response = await Axios.request(options);
         setExercises(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }, []);
+
 
   const handleSelectChange = (event) => {
     const selectedId = event.target.value;
-    const selected = exercises.find((exercise) => exercise._id === selectedId);
+    const selected = exercises.find((exercise) => exercise.id === selectedId);
     setSelectedExercise(selected);
-    if (selected && selected._id) {
-      console.log('Selected exercise key:', selected._id);
+    if (selected && selected.id) {
+      console.log('Selected exercise key:', selected.id);
     }
+  };
+
+  const handleMuscleChange = (event) => {
+    setSelectedMuscle(event.target.value);
   };
 
   const handleAddExercise = () => {
@@ -98,6 +127,21 @@ function WorkoutCreator(props) {
     setSets(newSets);
   };
 
+  const muscleOptions = Array.from(new Set(exercises.map((exercise) => exercise.target))).map((target) => (
+    <option key={target} value={target}>
+      {target}
+    </option>
+  ));
+
+  const exerciseOptions = exercises
+    .filter((exercise) => exercise.target === selectedMuscle || !selectedMuscle)
+    .map((exercise) => (
+      <option key={exercise.id} value={exercise.id}>
+        {exercise.name}
+      </option>
+    ));
+
+
   const setsForm = (
     <div className="sets-form">
       <Button className="my-button" onClick={handleAddSet}>Add Set</Button>
@@ -130,7 +174,7 @@ function WorkoutCreator(props) {
     </div>
   );
   const [showAddExercise, setshowAddExercise] = useState('');
-  const [selectedWorkout, setselectedWorkout] = useState({});
+
 
 
   return (
@@ -138,25 +182,27 @@ function WorkoutCreator(props) {
       <Button variant="success" onClick={() => handleshowAddExercise(props.workout)}>
         Add Exercise
       </Button>
-      <Link className="btn btn-info" to={`/app`}>
-          Back
-        </Link>
+      <Link className="aha" to={`/app`}>
+        Back
+      </Link>
       <Modal show={showModal} onHide={handleClose} >
         <Modal.Header closeButton>
         </Modal.Header>
         <Modal.Body>
+          <h4>Choose muscle:</h4>
+          <select onChange={handleMuscleChange}>
+            <option value="">Select a muscle</option>
+            {muscleOptions}
+          </select>
           <h4>Choose exercise:</h4>
           <select onChange={handleSelectChange}>
             <option value="">Select an exercise</option>
-            {exercises.map((exercise) => (
-              <option key={exercise._id} value={exercise._id}>
-                {exercise.name}
-              </option>
-            ))}
+            {exerciseOptions}
           </select>
           {selectedExercise && (
             <div>
               <h4>Choosen exercise: {selectedExercise.name}</h4>
+              <td className="exercise-image-cell"><Image src={selectedExercise.gifUrl} /></td>
               {setsForm}
             </div>
           )}
