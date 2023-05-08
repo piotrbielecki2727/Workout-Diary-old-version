@@ -39,6 +39,7 @@ function Exercises() {
         <div>
             {exercises.map((exercise) => (
                 <div key={exercise.id}>
+                    <h2>{exercise.id}</h2>
                     <h2>{exercise.name}</h2>
                     <img src={exercise.gifUrl} alt={exercise.name} />
                 </div>

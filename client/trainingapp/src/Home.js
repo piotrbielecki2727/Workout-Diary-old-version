@@ -1,10 +1,13 @@
 import React from 'react';
-import './Home.css'; // Importowanie pliku CSS z stylem tła strony
-import logo from './pngs/11.jpg'; // import your logo image
+import './Home.css'; 
+import Image from 'react-bootstrap/Image';
+import backgr from './pngs/backgr.jpg'; 
 
 function Home() {
   return (
-    <div>
+    <div className="background">
+      <Image/>
+    <h1></h1>
     </div>
   );
 }

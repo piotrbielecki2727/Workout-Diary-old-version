@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import './WorkoutDetails.css';
 import WorkoutCreator from './WorkoutCreator';
 import Image from 'react-bootstrap/Image';
-import majk from './pngs/majk.png'; // import your logo image
+
 import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 
 

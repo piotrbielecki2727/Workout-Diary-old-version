@@ -15,7 +15,7 @@ function NavigationBar(props) {
 
   return (
     <div className='Navbar'>
-      <Navbar sticky='top'>
+      <Navbar>
         <Navbar.Brand>
           <Link to='/home'>
             <img src={logo} />

@@ -1,0 +1,9 @@
+.background {
+    background-image: url('pngs/backgr2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+  }

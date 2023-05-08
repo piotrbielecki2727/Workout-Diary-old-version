@@ -1,6 +1,7 @@
 .Navbar {
   background-color: #333;
-  
+  display: flex;
+  justify-content: center;
 }
 
 .Navbar font {
@@ -17,7 +18,7 @@
 .nav-link {
   color: white;
   transition: 200ms linear; 
-  background-color: #4b4b4b;
+ font-size: large;
   border: 1px;
   border-radius: 10px;
   margin-left: 4px;

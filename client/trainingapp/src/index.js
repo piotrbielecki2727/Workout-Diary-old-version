@@ -31,6 +31,7 @@ ReactDOM.render(
           {isLoggedIn === "true" ? <Home /> : <Login history={useHistory} />}
         </Route>
         <Route path="/home">
+        <Home />
         </Route>
         <Route exact path="/app">
           <App />
