@@ -1,4 +1,3 @@
-# WORK IN PROGRESS
 MERN APP - MONGODB, EXPRESS.JS, REACT.JS, NODE.JS, React-Bootstrap and some CSS.
 
 HYPE is a fitness app that helps users plan, track and analyze their workouts at the gym. 
